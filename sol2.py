@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.io.wavfile import read, write
-import ex2_helper
+from ex2_helper import *
 
 
 def DFT(signal):
@@ -53,17 +53,15 @@ def resize(data, ratio):
         resized_data = centered_fourier_signal[num_of_sample_clip_per_side:-num_of_sample_clip_per_side]
     return IDFT(np.fft.ifftshift(resized_data)).reshape((new_size,))
 
+
 def resize_spectrogram(data, ratio):
+    spectrogram = stft(data)
+    resized_spectrogram = np.apply_along_axis(resize, 1, spectrogram, ratio)
+    return istft(resized_spectrogram)
 
+def resize_vocoder(data, ratio):
+    return istft(phase_vocoder(stft(data), ratio))
 
-
-
-# def iDFT(signal):
-#     x = np.transpose([np.arange(0,signal.shape[0])])
-#     mat = np.exp((-2j*np.pi*(x@x.T))/signal.shape[0])
-#     dft = mat@signal
-#     # assert np.isclose(dft,np.fft.fft(signal)).all()
-#     return dft
 
 
 h = np.array([2, 3, 3], dtype=np.float64).reshape(3, 1)
@@ -76,5 +74,6 @@ h = np.array([[0.3, 0.3, 0.59], [0.22, 0.98, 0.03]], dtype=np.float64)
 #
 # print(IDFT(DFT(h)))
 rate, lior = read('external\\aria_4kHz.wav')
+resize_spectrogram(lior, 1.1)
 print(IDFT2(DFT2(h)))
 # print(np.fft.fft(h))
