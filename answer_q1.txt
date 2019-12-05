@@ -1,0 +1,3 @@
+The difference is that in change_samples we cut all of the high frequencies in order to speed the audio,
+and change rate is doing it differently. in x2 rate, half of the frequencies disappear, which cause the sound to be
+different.

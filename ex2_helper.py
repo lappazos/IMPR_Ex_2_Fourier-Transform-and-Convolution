@@ -37,7 +37,8 @@ def istft(stft_matrix, win_length=640, hop_length=160):
 
 
 def phase_vocoder(spec, ratio):
-    time_steps = np.arange(spec.shape[1]) * ratio
+    num_timesteps = int(spec.shape[1] / ratio)
+    time_steps = np.arange(num_timesteps) * ratio
     time_steps = time_steps[time_steps < spec.shape[1]]
 
     # interpolate magnitude

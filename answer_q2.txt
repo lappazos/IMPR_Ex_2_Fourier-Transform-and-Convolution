@@ -1,0 +1,5 @@
+In resize_spectrogram, we perform resize using spectrogram scaling, resizing small windows of the sound, one at each
+time. The problem is, that in order to avoid unnatural discontinuities between the
+segments, we choose overlapping windows.
+In the overlap parts, we could encounter offset, which can cause waves to cancel each other. phase adjustment
+is needed to avoid it, which we perform only in the vocoder, that why it sound better.

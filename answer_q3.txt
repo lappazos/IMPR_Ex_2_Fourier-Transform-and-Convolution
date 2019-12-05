@@ -1,0 +1,3 @@
+In Fourier derivative, we are looking for differences between frequencies, while in convolution we are looking
+for differences between intensities. The are connected, but not the same, and represent two different perspectives
+to examine the derivative. This is why we see two different magnitude images
