@@ -218,6 +218,8 @@ def resize(data, ratio):
         resized_data = np.zeros((new_size,), dtype=np.complex128).reshape(new_size, 1)
         resized_data[
         int(np.ceil(num_of_zeros_per_side)):-int(np.floor(num_of_zeros_per_side))] = centered_fourier_signal
+    elif new_size == curr_size:
+        resized_data = centered_fourier_signal
     else:
         num_of_sample_clip_per_side = (curr_size - new_size) / 2
         resized_data = centered_fourier_signal[
